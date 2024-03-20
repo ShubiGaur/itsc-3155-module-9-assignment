@@ -4,7 +4,20 @@ from src.repositories.movie_repository import get_movie_repository
 
 app = Flask(__name__)
 
+# Get the movie repository singleton to use throughout the application
 movie_repository = get_movie_repository()
+get_movie_repository()
+
+# # Hardcoded test data
+# TEST_MOVIES = [
+#     {'title': 'Avatar', 'director': 'James Cameron', 'rating': 7},
+#     {'title': 'Inception', 'director': 'Christopher Nolan', 'rating': 8},
+#     {'title': 'The Shawshank Redemption', 'director': 'Frank Darabont', 'rating': 9}
+# ]
+
+# # Populate repository with hardcoded test data
+# for movie_data in TEST_MOVIES:
+#     movie_repository.create_movie(movie_data['title'], movie_data['director'], movie_data['rating'])
 
 
 @app.get('/')
@@ -14,7 +27,7 @@ def index():
 
 @app.get('/movies')
 def list_all_movies():
-    # TODO: Feature 1
+     # TODO: Feature 1
     movies = movie_repository.get_all_movies()
     return render_template('list_all_movies.html', movies=movies, list_movies_active=True)
 
@@ -27,6 +40,7 @@ def create_movies_form():
 @app.post('/movies')
 def create_movie():
     # TODO: Feature 2
+
     movie_name = request.form.get('title')
     director = request.form.get('director')
     rating = int(request.form.get('rating'))
@@ -40,19 +54,10 @@ def create_movie():
 def search_movies():
     # TODO: Feature 3
     return render_template('search_movies.html', search_active=True)
-@app.post('/movies/search')
-def search_movies_result():
-    # Retrieve the search query from the form
-    query = request.form.get('query')
-
-    # Call the movie repository to retrieve the matching movies
-    movies = movie_repository.search_movies(query)
-
-    # Render the search results
-    return render_template('search_movies_result.html', movies=movies)
 
 @app.get('/movies/<int:movie_id>')
 def get_single_movie(movie_id: int):
+    # TODO: Feature 4
     movie = movie_repository.get_movie_by_id(movie_id)
     return render_template('get_single_movie.html', movie=movie)
 
