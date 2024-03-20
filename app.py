@@ -19,31 +19,14 @@ def list_all_movies():
     return render_template('list_all_movies.html', list_movies_active=True)
 
 
-@app.route('/movies/new', methods=['GET', 'POST'])
+@app.get('/movies/new')
 def create_movies_form():
-    if request.method == 'POST':
-        # Modified: Handle form submission for creating a new movie
-        movie_name = request.form.get('movie_name')
-        director = request.form.get('director')
-        rating = int(request.form.get('rating'))
-
-        #Modified: Save the movie with rating to the database using movie_repository
-        movie_repository.create_movie(movie_name, director, rating)
-
-        #Modified: After creating the movie in the database, redirect to the list all movies page
-        return redirect(url_for('list_all_movies', 
-                                movie_name=movie_name, 
-                                director=director, 
-                                rating=rating))
-
-    # If it's a GET request, render the form to create a new movie rating
     return render_template('create_movies_form.html', create_rating_active=True)
-
-
+    
 @app.post('/movies')
 def create_movie():
     # TODO: Feature 2
-    movie_name = request.form.get('movie_name')
+    movie_name = request.form.get('title')
     director = request.form.get('director')
     rating = int(request.form.get('rating'))
 
