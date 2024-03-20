@@ -1,4 +1,3 @@
-<!-- list_all_movies.html -->
 {% extends '_layout.html' %}
 
 {% block title %}Movie Rating App | All Movies{% endblock %}
@@ -6,22 +5,24 @@
 {% block body %}
 <h1 class="mb-5">All Movies</h1>
 <p class="mb-3">See our list of movie ratings below</p>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Movie Title</th>
-            <th>Director</th>
-            <th>Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for movie in movies %}
-        <tr>
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.director }}</td>
-            <td>{{ movie.rating }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Director</th>
+      <th>Rating</th>
+      <th>Action</th> <!-- Add a new column for actions -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for movie in movies %}
+    <tr>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.director }}</td>
+      <td>{{ movie.rating }}</td>
+      <td><a href="/movies/{{ movie.id }}" class="btn btn-primary">View</a></td> <!-- Add a button to view the movie page -->
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
