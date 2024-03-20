@@ -1,7 +1,4 @@
-<!-- As a user, I should be able to view all saved movie ratings in a visually appealing table -->
-
-
-
+<!-- list_all_movies.html -->
 {% extends '_layout.html' %}
 
 {% block title %}Movie Rating App | All Movies{% endblock %}
@@ -9,7 +6,22 @@
 {% block body %}
 <h1 class="mb-5">All Movies</h1>
 <p class="mb-3">See our list of movie ratings below</p>
-<!-- TODO: Feature 1 -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Movie Title</th>
+            <th>Director</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.director }}</td>
+            <td>{{ movie.rating }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
-
-
