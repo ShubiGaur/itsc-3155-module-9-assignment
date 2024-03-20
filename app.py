@@ -8,17 +8,6 @@ app = Flask(__name__)
 movie_repository = get_movie_repository()
 get_movie_repository()
 
-# # Hardcoded test data
-# TEST_MOVIES = [
-#     {'title': 'Avatar', 'director': 'James Cameron', 'rating': 7},
-#     {'title': 'Inception', 'director': 'Christopher Nolan', 'rating': 8},
-#     {'title': 'The Shawshank Redemption', 'director': 'Frank Darabont', 'rating': 9}
-# ]
-
-# # Populate repository with hardcoded test data
-# for movie_data in TEST_MOVIES:
-#     movie_repository.create_movie(movie_data['title'], movie_data['director'], movie_data['rating'])
-
 
 @app.get('/')
 def index():
