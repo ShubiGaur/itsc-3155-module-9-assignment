@@ -5,10 +5,10 @@
 {% block body %}
 <h1 class="mb-5">Create Movie Rating</h1>
 <p class="mb-3">Create a movie rating below</p>
-<form method="POST">
+<form method="POST" action="/movies">
     <div class="form-group">
-        <label for="movie_name">Movie Name</label>
-        <input type="text" class="form-control" id="movie_name" name="movie_name" value="{{ movie_name }}" required>
+        <label for="title">Movie Name</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ title }}" required>
     </div>
     <div class="form-group">
         <label for="director">Director</label>
