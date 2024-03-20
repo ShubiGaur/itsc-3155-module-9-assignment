@@ -4,13 +4,13 @@ from src.repositories.movie_repository import get_movie_repository
 
 @pytest.fixture
 def movie_repo():
-    """Fixture to provide a clean movie repository instance before each test."""
+    # """Fixture to provide a clean movie repository instance before each test."""
     movie_repository = get_movie_repository()
     movie_repository.clear_db()  # Clear the database before each test
     return movie_repository
 
 def test_create_movie(movie_repo):
-    """Test creating a movie rating."""
+    # """Test creating a movie rating."""
     # Arrange
     movie_name = "Test Movie"
     director = "Test Director"
@@ -26,7 +26,7 @@ def test_create_movie(movie_repo):
     assert movie.rating == rating
 
 def test_create_movie_bad_input(movie_repo):
-    """Test creating a movie rating with bad input."""
+    # """Test creating a movie rating with bad input."""
     # Arrange
     movie_name = ""
     director = "Test Director"
@@ -37,7 +37,7 @@ def test_create_movie_bad_input(movie_repo):
         movie_repo.create_movie(movie_name, director, rating)
 
 def test_create_movie_duplicate_title(movie_repo):
-    """Test creating a movie rating with a duplicate title."""
+    # """Test creating a movie rating with a duplicate title."""
     # Arrange
     movie_name = "Duplicate Movie"
     director = "Test Director"
