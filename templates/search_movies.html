@@ -5,5 +5,36 @@
 {% block body %}
 <h1 class="mb-5">Search Movie Ratings</h1>
 <p class="mb-3">Search for a movie rating below</p>
-<!-- TODO: Feature 3 -->
+
+<form method="POST" action="/search">
+    <div class="mb-3">
+        <label for="movie_title" class="form-label">Movie Title:</label>
+        <input type="text" id="movie_title" name="movie_title" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+{% if results %}
+    <h2 class="mt-5">Search Results</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movie in results %}
+                <tr>
+                    <td>{{ movie.title }}</td>
+                    <td>{{ movie.director }}</td>
+                    <td>{{ movie.rating }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
 {% endblock %}
+
