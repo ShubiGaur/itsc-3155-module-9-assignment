@@ -6,6 +6,18 @@ app = Flask(__name__)
 
 # Get the movie repository singleton to use throughout the application
 movie_repository = get_movie_repository()
+get_movie_repository()
+
+# # Hardcoded test data
+# TEST_MOVIES = [
+#     {'title': 'Avatar', 'director': 'James Cameron', 'rating': 7},
+#     {'title': 'Inception', 'director': 'Christopher Nolan', 'rating': 8},
+#     {'title': 'The Shawshank Redemption', 'director': 'Frank Darabont', 'rating': 9}
+# ]
+
+# # Populate repository with hardcoded test data
+# for movie_data in TEST_MOVIES:
+#     movie_repository.create_movie(movie_data['title'], movie_data['director'], movie_data['rating'])
 
 
 @app.get('/')
@@ -42,7 +54,6 @@ def create_movie():
 def search_movies():
     # TODO: Feature 3
     return render_template('search_movies.html', search_active=True)
-
 @app.post('/movies/search')
 def search_movies_result():
     # Retrieve the search query from the form
@@ -64,16 +75,3 @@ def get_single_movie(movie_id: int):
 def get_edit_movies_page(movie_id: int):
     movie = movie_repository.get_movie_by_id(movie_id)
     return render_template('edit_movies_form.html', movie=movie)
-
-@app.get('/populate_database_with_fake_movies')
-def populate_database_with_fake_movies():
-    # Create some fake movies in the database
-    movie_repository.create_movie('Fake Movie 1', 'Fake Director 1', 7)
-    movie_repository.create_movie('Fake Movie 2', 'Fake Director 2', 8)
-    # Add as many fake movies as needed
-    
-    # Redirect to the route that displays all movies
-    return redirect('/movies')
-
-if __name__ == "__main__":
-    app.run(debug=True)
