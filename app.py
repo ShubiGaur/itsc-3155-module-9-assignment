@@ -63,7 +63,12 @@ def search_movies():
 @app.get('/movies/<int:movie_id>')
 def get_single_movie(movie_id: int):
     # TODO: Feature 4
-    return render_template('get_single_movie.html')
+    movie = get_movie_by_id(movie_id)
+    if movie:
+        return render_template('get_single_movie.html', movie_title=movie.title, movie_director=movie.director, movie_rating=movie.rating)
+    else:
+        # Handle the case where the movie with the provided ID is not found
+        return render_template('error.html', message='Movie not found'), 404
 
 
 @app.get('/movies/<int:movie_id>/edit')
