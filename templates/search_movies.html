@@ -3,7 +3,39 @@
 {% block title %}Movie Rating App | Search Movie Ratings{% endblock %}
 
 {% block body %}
-<h1 class="mb-5">Search Movie Ratings</h1>
-<p class="mb-3">Search for a movie rating below</p>
-<!-- TODO: Feature 3 -->
+<div container>
+    <h1 class="mb-5">Search Movie Ratings</h1>
+    <p class="mb-3">Search for a movie rating below:</p>
+    <form action="/movies/search" method="GET">
+        <div class="mb-3">
+            <label for="searchmovie" class="form-label">Movie Search</label>
+            <input type="search" class="form-control" name="search" id="search">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div container>
+    {% if movie %}
+    <table class="table table-dark table-rounded table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Director</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr onclick="window.location='/movies/{{ movie.title}}';" style="cursor: pointer;">
+                <td>{{ movie.movie_id }}</td>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.rating }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <h3 class="mb-5">No Movie Found.</h3>
+    {% endif %}
+    </div>
+</div>
 {% endblock %}
