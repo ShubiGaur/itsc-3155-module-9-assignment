@@ -17,16 +17,12 @@
     </tr>
  </thead>
  <tbody>
-    {% for movie in movies %}
+    {% for movie in movies.values() %}
     <tr>
-      <td>{{ movies[movie].title }}</td>
-      <td>{{ movies[movie].director }}</td>
-      <td>{{ movies[movie].rating }}</td>
-      <td>
-        <form action="{{  url_for( 'get_single_movie', movie_id=movies[movie].movie_id)  }}" method="get">
-          <button type="submit" class="btn btn-primary">View</button>
-        </form>
-      </td>
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.director }}</td>
+      <td>{{ movie.rating }}</td>
+      <td><a href="/movies/{{ movie.id }}" class="btn btn-primary">View</a></td>
     </tr>
     {% endfor %}
  </tbody>
