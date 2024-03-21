@@ -25,16 +25,10 @@
 <h1 class="mb-5">Movie Details</h1>
 <div class="d-flex justify-content-center">
     <div class="movie-details">
-        <h2>{{ movie_title }}</h2>
-        <p><strong>Director:</strong> {{ movie_director }}</p>
-        <p><strong>Rating:</strong> {{ movie_rating }}</p>
-        <!-- Debugging: Display the movie ID -->
-        <p><strong>Movie ID:</strong> {{ movie_id }}</p>
+        <h2>{{ movie.title }}</h2>
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p><strong>Rating:</strong> {{ movie.rating }}</p>
     </div>
 </div>
 {% endblock %}
 
-@app.route('/movies/')
-def list_all_movies():
-    movies = movie_repository.get_all_movies()
-    return render_template('list_all_movies.html', movies=movies, list_movies_active=True)

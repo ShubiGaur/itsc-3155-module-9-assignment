@@ -36,7 +36,7 @@ def index():
 
 @app.get('/movies')
 def list_all_movies():
-     # TODO: Feature 1
+# TODO: Feature 1
     movies = movie_repository.get_all_movies()
     return render_template('list_all_movies.html', movies=movies, list_movies_active=True)
 
@@ -80,10 +80,9 @@ def search_movies():
 
 @app.get('/movies/<int:movie_id>')
 def get_single_movie(movie_id: int):
+    # Feature 4
     movie = movie_repository.get_movie_by_id(movie_id)
-    if movie is None:
-        abort(404, description="NO MOVIE NO MOVIE NO MOVIE")
-    return render_template('get_single_movie.html', movie_title=movie.title, movie_director=movie.director, movie_rating=movie.rating)
+    return render_template('get_single_movie.html', movie=movie)
 
 
 
