@@ -1,4 +1,6 @@
+
 from flask import Flask, redirect, render_template, request, url_for
+
 
 from src.repositories.movie_repository import get_movie_repository
 
@@ -55,6 +57,7 @@ def create_movie():
     # After creating the movie in the database, we redirect to the list all movies page
     return redirect('/movies')
 
+
 @app.route('/movies/search')
 def search_movies():
     search_query = request.args.get('search')  # Get the search query from the URL parameter
@@ -84,5 +87,6 @@ def get_single_movie(movie_id: int):
 
 @app.get('/movies/<int:movie_id>/edit')
 def get_edit_movies_page(movie_id: int):
+
     movie = movie_repository.get_movie_by_id(movie_id)
     return render_template('edit_movies_form.html', movie=movie)
