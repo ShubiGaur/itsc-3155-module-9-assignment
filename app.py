@@ -43,11 +43,13 @@ def search_movies():
     # TODO: Feature 3
     return render_template('search_movies.html', search_active=True)
 
-@app.get('/movies/<int:movie_id>')
+@app.route('/movies/<int:movie_id>')
 def get_single_movie(movie_id: int):
-    # TODO: Feature 4
     movie = movie_repository.get_movie_by_id(movie_id)
-    return render_template('get_single_movie.html', movie=movie)
+    if movie is None:
+        abort(404, description="NO MOVIE NO MOVIE NO MOVIE")
+    return render_template('get_single_movie.html', movie_title=movie.title, movie_director=movie.director, movie_rating=movie.rating)
+
 
 
 @app.get('/movies/<int:movie_id>/edit')

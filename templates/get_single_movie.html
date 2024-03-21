@@ -3,7 +3,6 @@
 {% block title %}Movie Rating App | Movie{% endblock %}
 
 {% block body %}
-<!-- TODO: Feature 4 -->
 <style>
     .movie-details {
         background-color: #f8f9fa;
@@ -29,6 +28,13 @@
         <h2>{{ movie_title }}</h2>
         <p><strong>Director:</strong> {{ movie_director }}</p>
         <p><strong>Rating:</strong> {{ movie_rating }}</p>
+        <!-- Debugging: Display the movie ID -->
+        <p><strong>Movie ID:</strong> {{ movie_id }}</p>
     </div>
 </div>
 {% endblock %}
+
+@app.route('/movies/')
+def list_all_movies():
+    movies = movie_repository.get_all_movies()
+    return render_template('list_all_movies.html', movies=movies, list_movies_active=True)
