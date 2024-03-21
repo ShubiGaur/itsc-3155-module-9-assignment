@@ -28,6 +28,7 @@ for movie_data in TEST_MOVIES:
 movie_repository.create_movie('Movie A', 'Director A', 1)
 
 
+
 @app.get('/')
 def index():
     return render_template('index.html')
@@ -55,8 +56,6 @@ def create_movie():
 
     # After creating the movie in the database, we redirect to the list all movies page
     return redirect('/movies')
-
-
 
 @app.route('/movies/search')
 def search_movies():
